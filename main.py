@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import pandas as pd
-from rules import printik
+from rules import d_rule
 
 class App:
     def __init__(self, root):
@@ -278,7 +278,9 @@ class App:
         except Exception as e:
             selected_columns_data = None
 
-        printik(selected_func, num_intervals, selected_columns_data, intervals_data)
+        print(intervals_data)
+        d_rule(selected_func, num_intervals, selected_columns_data, intervals_data)
+
 
         messagebox.showinfo("Результат", "Параметры успешно обработаны")
 
