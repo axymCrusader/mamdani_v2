@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import pandas as pd
-from rules import d_rule
+from mamdani import mamnadi_start
 
 class App:
     def __init__(self, root):
@@ -104,7 +104,7 @@ class App:
 
         tk.Label(expert_window, text="Выберите функцию принадлежности:").pack(anchor="w")
         self.expert_membership_func = tk.StringVar(expert_window)
-        membership_options = ["Треугольная", "Трапециевидная", "Квадратная", "Гаусса"]
+        membership_options = ['trimf', "trapmf", 'gaussmf']
         membership_dropdown = tk.OptionMenu(expert_window, self.expert_membership_func, *membership_options,
                                             command=self.show_interval_selection)
         membership_dropdown.pack(anchor="w")
@@ -213,7 +213,7 @@ class App:
         tk.Label(self.uniform_window, text="Выберите функцию принадлежности:").pack(anchor="w")
 
         self.membership_func = tk.StringVar(self.uniform_window)
-        membership_options = ["Гаусса", "Квадратная", "Треугольная", "Трапециевидная"]
+        membership_options = ['trimf', 'trapmf', 'gaussmf']
         membership_dropdown = tk.OptionMenu(self.uniform_window, self.membership_func, *membership_options)
         membership_dropdown.pack(anchor="w")
 
@@ -278,8 +278,7 @@ class App:
         except Exception as e:
             selected_columns_data = None
 
-        print(intervals_data)
-        d_rule(selected_func, num_intervals, selected_columns_data, intervals_data)
+        mamnadi_start(selected_func, num_intervals, selected_columns_data, intervals_data)
 
 
         messagebox.showinfo("Результат", "Параметры успешно обработаны")
